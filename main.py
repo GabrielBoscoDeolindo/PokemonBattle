@@ -26,7 +26,7 @@ print(f"{Fore.LIGHTGREEN_EX}Dança das Espadas:{Style.RESET_ALL} {Fore.CYAN}O at
 
 # Descrição dos ataques do Infernape
 print(f"\n{Fore.LIGHTRED_EX}Descrições dos Ataques do Infernape:")
-print(f"{Fore.LIGHTRED_EX}Blitz de Chamas:{Style.RESET_ALL} {Fore.YELLOW}Quando usada, o usuário toma 33% do dano causado como recuo{Style.RESET_ALL}")
+print(f"{Fore.LIGHTRED_EX}Blitz de Chamas:{Style.RESET_ALL} {Fore.YELLOW}Quando usada, o usuário toma 1/3 do dano causado como recuo{Style.RESET_ALL}")
 print(f"{Fore.LIGHTRED_EX}Porradaria:{Style.RESET_ALL} {Fore.YELLOW}Ataque sem efeitos adicionais, mas com grande poder{Style.RESET_ALL}")
 print(f"{Fore.LIGHTRED_EX}Ataque de Fúria:{Style.RESET_ALL} {Fore.YELLOW}Pode acertar de 2 a 5 vezes{Style.RESET_ALL}")
 print(f"{Fore.LIGHTRED_EX}Cabeçada:{Style.RESET_ALL} {Fore.YELLOW}50% de chance de causar o dobro de dano{Style.RESET_ALL}\n")
@@ -89,7 +89,7 @@ while poke1_hp > 0 and poke2_hp > 0:
 
     if ataque_infernape == "Blitz de Chamas (Poder: 120 Precisão: 100%)":
         poke1_hp -= 120
-        dano_recoil = int(120 * 0.33)
+        dano_recoil = int(120/3)
         poke2_hp -= dano_recoil
         print(f"{Fore.YELLOW}Lucario toma 120 de dano!{Style.RESET_ALL}")
         print(f"{Fore.YELLOW}Infernape sofre {dano_recoil} de dano devido ao recuo!{Style.RESET_ALL}\n")
