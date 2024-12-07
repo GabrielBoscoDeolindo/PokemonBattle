@@ -2,8 +2,19 @@ from InquirerPy import inquirer
 import random
 from colorama import Fore, Style
 
+def exibir_vida(atual, maximo):
+    porcentagem = (atual / maximo) * 100
+    if porcentagem > 50:
+        cor = Fore.GREEN
+    elif porcentagem > 25:
+        cor = Fore.YELLOW
+    else:
+        cor = Fore.RED
+    return f"{cor}{atual}/{maximo} HP{Style.RESET_ALL}"
+
 poke1_hp = 750
 poke2_hp = 750
+max_hp = 750
 ataques_infernape = ["Blitz de Chamas (Poder: 120 Precisão: 100%)", "Porradaria (Poder: 120 Precisão: 75%)", "Ataque de Fúria (Poder: 35 Precisão: 85%)", "Cabeçada (Poder: 80 Precisão: 80%)"]
 
 # Descrição dos ataques do Lucario
@@ -22,8 +33,8 @@ print(f"{Fore.RED}{Style.BRIGHT}Cabeçada:{Style.RESET_ALL} {Fore.YELLOW}{Style.
 
 # Loop da batalha
 while poke1_hp > 0 and poke2_hp > 0:
-    print(f"{Fore.CYAN}{Style.BRIGHT}HP do Lucario: {poke1_hp}{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}{Style.BRIGHT}HP do Infernape: {poke2_hp}{Style.RESET_ALL}\n")
+    print(f"\nLucario: {exibir_vida(poke1_hp, max_hp)}")
+    print(f"Infernape: {exibir_vida(poke2_hp, max_hp)}\n")
 
     # Prompt para escolher o ataque
     ataque = inquirer.select(
