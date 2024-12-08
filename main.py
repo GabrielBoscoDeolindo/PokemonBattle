@@ -2,6 +2,27 @@ from InquirerPy import inquirer
 import random
 from colorama import Fore, Style
 
+def descricao_ataques():
+    lucario = {
+        "Aura Esférica": "Esse ataque não pode errar",
+        "Quebra Meteoro": "25% de chance de curar o usuário",
+        "Voadora Alta": "Se esse ataque errar, o usuário toma 50% do dano",
+        "Dança das Espadas": "O ataque do usuário aumenta consideravelmente"
+        }
+    
+    infernape = {
+        "Blitz de Chamas": "Quando usada, o usuário toma 1/3 do dano causado como recuo",
+        "Porradaria": "Ataque sem efeitos adicionais, mas com grande poder",
+        "Ataque de Fúria": "Pode acertar de 2 a 5 vezes",
+        "Cabeçada": "50% de chance de causar o dobro de dano"
+    }
+    print()
+    for nome, descricao in lucario.items():
+        print(f"{Fore.LIGHTGREEN_EX}{nome}:{Style.RESET_ALL} {Fore.CYAN}{descricao}{Style.RESET_ALL}")
+    print()
+    for nome, descricao in infernape.items():
+        print(f"{Fore.LIGHTRED_EX}{nome}:{Style.RESET_ALL} {Fore.YELLOW}{descricao}{Style.RESET_ALL}")
+  
 def exibir_vida(atual, maximo):
     porcentagem_vida = (atual / maximo) * 100
     if porcentagem_vida > 50:
@@ -12,27 +33,14 @@ def exibir_vida(atual, maximo):
         cor = Fore.RED
     return f"{cor}{atual}/{maximo} HP{Style.RESET_ALL}"
 
+
 poke1_hp = 750
 poke2_hp = 750
 max_hp = 750
-ataques_infernape = ["Blitz de Chamas (Poder: 120 Precisão: 100%)", "Porradaria (Poder: 110 Precisão: 75%)", "Ataque de Fúria (Poder: 35 Precisão: 85%)", "Cabeçada (Poder: 80 Precisão: 80%)"]
-
-# Descrição dos ataques do Lucario
-print(f"\n{Fore.LIGHTGREEN_EX}Descrições dos Ataques do Lucario:")
-print(f"{Fore.LIGHTGREEN_EX}Aura Esférica:{Style.RESET_ALL} {Fore.CYAN}Esse ataque não pode errar{Style.RESET_ALL}")
-print(f"{Fore.LIGHTGREEN_EX}Quebra Meteoro:{Style.RESET_ALL} {Fore.CYAN}25% de chance de curar o usuário{Style.RESET_ALL}")
-print(f"{Fore.LIGHTGREEN_EX}Voadora Alta:{Style.RESET_ALL} {Fore.CYAN}Se esse ataque errar, o usuário toma 50% do dano{Style.RESET_ALL}")
-print(f"{Fore.LIGHTGREEN_EX}Dança das Espadas:{Style.RESET_ALL} {Fore.CYAN}O ataque do usuário aumenta consideravelmente{Style.RESET_ALL}")
-
-# Descrição dos ataques do Infernape
-print(f"\n{Fore.LIGHTRED_EX}Descrições dos Ataques do Infernape:")
-print(f"{Fore.LIGHTRED_EX}Blitz de Chamas:{Style.RESET_ALL} {Fore.YELLOW}Quando usada, o usuário toma 1/3 do dano causado como recuo{Style.RESET_ALL}")
-print(f"{Fore.LIGHTRED_EX}Porradaria:{Style.RESET_ALL} {Fore.YELLOW}Ataque sem efeitos adicionais, mas com grande poder{Style.RESET_ALL}")
-print(f"{Fore.LIGHTRED_EX}Ataque de Fúria:{Style.RESET_ALL} {Fore.YELLOW}Pode acertar de 2 a 5 vezes{Style.RESET_ALL}")
-print(f"{Fore.LIGHTRED_EX}Cabeçada:{Style.RESET_ALL} {Fore.YELLOW}50% de chance de causar o dobro de dano{Style.RESET_ALL}\n")
-
-
 danca_das_espadas = False
+ataques_infernape = ["Blitz de Chamas (Poder: 120 Precisão: 100%)", "Porradaria (Poder: 110 Precisão: 75%)", "Ataque de Fúria (Poder: 35 Precisão: 85%)", "Cabeçada (Poder: 80 Precisão: 80%)"]
+descricao_ataques()
+
 
 # Loop da batalha
 while poke1_hp > 0 and poke2_hp > 0:
