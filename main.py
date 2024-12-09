@@ -22,7 +22,6 @@ def descricao_ataques():
     print()
     for nome, descricao in infernape.items():
         print(f"{Fore.LIGHTRED_EX}{nome}:{Style.RESET_ALL} {Fore.YELLOW}{descricao}{Style.RESET_ALL}")
-  
 def exibir_vida(atual, maximo):
     porcentagem_vida = (atual / maximo) * 100
     if porcentagem_vida > 50:
@@ -32,7 +31,6 @@ def exibir_vida(atual, maximo):
     else:
         cor = Fore.RED
     return f"{cor}{atual}/{maximo} HP{Style.RESET_ALL}"
-
 
 poke1_hp = 750
 poke2_hp = 750
@@ -61,15 +59,17 @@ while poke1_hp > 0 and poke2_hp > 0:
     # Lógica dos ataques do Lucario
     print(f"\n{Fore.LIGHTGREEN_EX}Lucario usa {ataque.split('(')[0].strip()}!{Style.RESET_ALL}")
     if ataque == "Aura Esférica (Poder: 85   Precisão: 100%)":
-        poke2_hp -= 85 + (30 if danca_das_espadas else 0)  
-        print(f"{Fore.CYAN}Infernape toma {85 + (30 if danca_das_espadas else 0)} de dano!{Style.RESET_ALL}\n")
+        dano = 85 + danca_das_espadas
+        poke2_hp -= dano  
+        print(f"{Fore.CYAN}Infernape toma {dano} de dano!{Style.RESET_ALL}\n")
         
-    elif ataque == "Quebra Meteoro (Poder: 90   Precisão: 80%)":
+    elif ataque == "Quebra Meteoro (Poder: 100   Precisão: 80%)":
         if random.randint(1, 100) > 80:
             print(f"{Fore.RED}Lucario errou!{Style.RESET_ALL}")
         else:
-            poke2_hp -= 90 + (30 if danca_das_espadas else 0)
-            print(f"{Fore.CYAN}Infernape toma {90 + (30 if danca_das_espadas else 0)} de dano!{Style.RESET_ALL}")
+            dano = 100 + danca_das_espadas
+            poke2_hp -= dano
+            print(f"{Fore.CYAN}Infernape toma {dano} de dano!{Style.RESET_ALL}")
             if random.randint(1, 100) <= 20:
                 poke1_hp += 20
                 print(f"{Fore.CYAN}Lucario se cura 20 pontos!{Style.RESET_ALL}\n")
@@ -79,18 +79,14 @@ while poke1_hp > 0 and poke2_hp > 0:
             poke1_hp -= 60
             print(f"{Fore.RED}Lucario errou e se feriu, tomando 60 de dano!{Style.RESET_ALL}")
         else:
-            poke2_hp -= 130 + (30 if danca_das_espadas else 0)
-            print(f"{Fore.CYAN}Infernape toma {130 + (30 if danca_das_espadas else 0)} de dano!{Style.RESET_ALL}\n")
+            dano = 130 + danca_das_espadas
+            poke2_hp -= dano
+            print(f"{Fore.CYAN}Infernape toma {dano} de dano!{Style.RESET_ALL}\n")
             
     elif ataque == "Dança das Espadas (Poder: 0   Precisão: 100%)":
-        danca_das_espadas = True
-        print(f"{Fore.CYAN}O ataque de Lucario aumentou seu dano nos próximos turnos!{Style.RESET_ALL}\n")
+        danca_das_espadas = 25
+        print(f"{Fore.CYAN}O poder de ataque de Lucario aumentou nos próximos turnos!{Style.RESET_ALL}\n")
         
-    if poke2_hp <= 0:
-        print(f"{Fore.YELLOW}Infernape foi derrotado! Lucario vence!{Style.RESET_ALL}")
-        vencedor = "Lucario"
-        break
-
     # Turno do Infernape
     ataque_infernape = random.choice(ataques_infernape)
     print(f"\n{Fore.LIGHTRED_EX}Infernape usa {ataque_infernape.split('(')[0].strip()}!{Style.RESET_ALL}")
@@ -135,11 +131,18 @@ while poke1_hp > 0 and poke2_hp > 0:
         else:
             print(f"{Fore.RED}Infernape errou a Cabeçada!{Style.RESET_ALL}\n")
 
+    # Verifica se o Infernape foi derrotado
+    if poke2_hp <= 0:
+        print(f"{Fore.YELLOW}Infernape foi derrotado! Lucario vence!{Style.RESET_ALL}")
+        vencedor = "Lucario"
+        break
     # Verifica se o Lucario foi derrotado
     if poke1_hp <= 0:
         print(f"{Fore.YELLOW}Lucario foi derrotado! Infernape vence!{Style.RESET_ALL}")
         vencedor = "Infernape"
         break
+    
+    
 
 
 if vencedor == "Lucario":
