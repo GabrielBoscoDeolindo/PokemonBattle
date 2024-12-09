@@ -1,6 +1,6 @@
+from colorama import Fore, Style
 from InquirerPy import inquirer
 import random
-from colorama import Fore, Style
 
 def descricao_ataques():
     lucario = {
@@ -36,7 +36,16 @@ poke1_hp = 750
 poke2_hp = 750
 max_hp = 750
 danca_das_espadas = False
-ataques_infernape = ["Blitz de Chamas (Poder: 120 Precisão: 100%)", "Porradaria (Poder: 110 Precisão: 75%)", "Ataque de Fúria (Poder: 35 Precisão: 85%)", "Cabeçada (Poder: 80 Precisão: 80%)"]
+ataques_infernape = ["Blitz de Chamas (Poder: 120 Precisão: 100%)",
+                     "Porradaria (Poder: 110 Precisão: 75%)",
+                     "Ataque de Fúria (Poder: 35 Precisão: 85%)",
+                     "Cabeçada (Poder: 80 Precisão: 80%)"]
+
+ataques_lucario = ["Aura Esférica (Poder: 85   Precisão: 100%)",
+                   "Quebra Meteoro (Poder: 100   Precisão: 80%)",
+                   "Voadora Alta (Poder: 130   Precisão: 70%)",
+                   "Dança das Espadas (Poder: 0   Precisão: 100%)"
+                   ]
 descricao_ataques()
 
 
@@ -48,12 +57,7 @@ while poke1_hp > 0 and poke2_hp > 0:
     # Prompt para escolher o ataque
     ataque = inquirer.select(
         message="Escolha seu movimento:",
-        choices=[
-            "Aura Esférica (Poder: 85   Precisão: 100%)",
-            "Quebra Meteoro (Poder: 100   Precisão: 80%)",
-            "Voadora Alta (Poder: 130   Precisão: 70%)",
-            "Dança das Espadas (Poder: 0   Precisão: 100%)"
-        ]
+        choices= ataques_lucario
     ).execute()
 
     # Lógica dos ataques do Lucario
@@ -84,8 +88,11 @@ while poke1_hp > 0 and poke2_hp > 0:
             print(f"{Fore.CYAN}Infernape toma {dano} de dano!{Style.RESET_ALL}\n")
             
     elif ataque == "Dança das Espadas (Poder: 0   Precisão: 100%)":
-        danca_das_espadas = 25
-        print(f"{Fore.CYAN}O poder de ataque de Lucario aumentou nos próximos turnos!{Style.RESET_ALL}\n")
+        if danca_das_espadas:
+            print(f"{Fore.CYAN}O Ataque falhou!{Style.RESET_ALL}")
+        else:
+            danca_das_espadas = 25
+            print(f"{Fore.CYAN}O poder de ataque de Lucario aumentou nos próximos turnos!{Style.RESET_ALL}\n")
         
     # Turno do Infernape
     ataque_infernape = random.choice(ataques_infernape)
@@ -142,9 +149,6 @@ while poke1_hp > 0 and poke2_hp > 0:
         vencedor = "Infernape"
         break
     
-    
-
-
 if vencedor == "Lucario":
     print(f"""{Fore.LIGHTCYAN_EX}
 ░░░░░░░░░░░░░░░░░░░░░░▒░░░░░░░░░░░░░░░░░
