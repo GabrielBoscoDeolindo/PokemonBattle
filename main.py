@@ -23,15 +23,18 @@ def descricao_ataques():
     for nome, descricao in infernape.items():
         print(f"{Fore.LIGHTRED_EX}{nome}:{Style.RESET_ALL} {Fore.YELLOW}{descricao}{Style.RESET_ALL}")
         
-def exibir_vida(atual, maximo):
-    porcentagem_vida = (atual / maximo) * 100
-    if porcentagem_vida > 50:
+def exibir_vida(atual, maximo, largura=30):
+    porcentagem_vida = atual / maximo
+    blocos_cheios = int(porcentagem_vida * largura)
+    blocos_vazios = largura - blocos_cheios
+    if porcentagem_vida > 0.5:
         cor = Fore.GREEN
-    elif porcentagem_vida > 25:
+    elif porcentagem_vida > 0.25:
         cor = Fore.YELLOW
     else:
-        cor = Fore.RED
-    return f"{cor}{atual}/{maximo} HP{Style.RESET_ALL}"
+        cor = Fore.LIGHTRED_EX
+    barra = f"{cor}{'█' * blocos_cheios}{' ' * blocos_vazios}{Style.RESET_ALL}"
+    return f"{cor}{atual}: {barra}"
 
 poke1_hp = 1000
 poke2_hp = 1000
@@ -51,8 +54,8 @@ descricao_ataques()
 
 # Loop da batalha
 while poke1_hp > 0 and poke2_hp > 0:
-    print(f"\nLucario: {exibir_vida(poke1_hp, max_hp)}")
-    print(f"Infernape: {exibir_vida(poke2_hp, max_hp)}\n")
+    print(f"\n{Fore.LIGHTCYAN_EX}HP Lucario:  {Style.RESET_ALL} {exibir_vida(poke1_hp, max_hp)}\n")
+    print(f"{Fore.LIGHTRED_EX}HP Infernape:{Style.RESET_ALL} {exibir_vida(poke2_hp, max_hp)}\n")
 
     # Prompt para escolher o ataque
     ataque = inquirer.select(
