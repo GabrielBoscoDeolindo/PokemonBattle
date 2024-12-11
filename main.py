@@ -22,6 +22,7 @@ def descricao_ataques():
     print()
     for nome, descricao in infernape.items():
         print(f"{Fore.LIGHTRED_EX}{nome}:{Style.RESET_ALL} {Fore.YELLOW}{descricao}{Style.RESET_ALL}")
+        
 def exibir_vida(atual, maximo):
     porcentagem_vida = (atual / maximo) * 100
     if porcentagem_vida > 50:
@@ -32,9 +33,9 @@ def exibir_vida(atual, maximo):
         cor = Fore.RED
     return f"{cor}{atual}/{maximo} HP{Style.RESET_ALL}"
 
-poke1_hp = 750
-poke2_hp = 750
-max_hp = 750
+poke1_hp = 1000
+poke2_hp = 1000
+max_hp = 1000
 danca_das_espadas = False
 ataques_infernape = ["Blitz de Chamas (Poder: 120 Precisão: 100%)",
                      "Porradaria (Poder: 110 Precisão: 75%)",
@@ -44,8 +45,7 @@ ataques_infernape = ["Blitz de Chamas (Poder: 120 Precisão: 100%)",
 ataques_lucario = ["Aura Esférica (Poder: 85   Precisão: 100%)",
                    "Quebra Meteoro (Poder: 100   Precisão: 80%)",
                    "Voadora Alta (Poder: 130   Precisão: 70%)",
-                   "Dança das Espadas (Poder: 0   Precisão: 100%)"
-                   ]
+                   "Dança das Espadas (Poder: 0   Precisão: 100%)"]
 descricao_ataques()
 
 
